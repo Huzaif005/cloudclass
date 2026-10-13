@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CloudClass — cloud-based assignment submission and academic workflow." />
+  <title>CloudClass | Assignment Workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="CloudClass home">
+        <span class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M9.4 23.5h14a5.2 5.2 0 0 0 .3-10.4A7.9 7.9 0 0 0 8.4 11a6.3 6.3 0 0 0 1 12.5Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m12.4 17.2 3.1 3.1 5.1-5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>cloud<span class="brand-light">class</span></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">◫</span> Overview</button>
+        <button class="nav-item" data-view="assignments"><span class="nav-icon">▤</span> Assignments <span class="nav-count" id="navAssignmentCount">8</span></button>
+        <button class="nav-item" data-view="submissions"><span class="nav-icon">↥</span> My submissions</button>
+        <button class="nav-item" data-view="calendar"><span class="nav-icon">▦</span> Calendar</button>
+        <button class="nav-item" data-view="resources"><span class="nav-icon">▧</span> Resources</button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="storage-card">
+        <div class="storage-top"><span class="storage-icon">☁</span><span class="storage-title">Cloud storage</span><span class="storage-badge">LIVE</span></div>
+        <div class="storage-number"><strong>2.4 GB</strong><span> of 5 GB</span></div>
+        <div class="storage-track"><span style="width:48%"></span></div>
+        <p>Keep your coursework organized in one place.</p>
+      </div>
+      <button class="help-link" id="helpButton"><span>ⓘ</span> Help & support <span class="help-arrow">↗</span></button>
+      <div class="sidebar-profile">
+        <div class="avatar avatar-indigo">HP</div>
+        <div class="profile-meta"><strong id="sidebarName">Huzaif Patel</strong><span id="sidebarRole">Student account</span></div>
+        <button class="more-button" id="profileMenu" aria-label="Profile menu">•••</button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+        <div class="breadcrumb"><span>Workspace</span><span class="crumb-slash">/</span><strong id="breadcrumbCurrent">Overview</strong></div>
+        <div class="topbar-actions">
+          <span class="cloud-status demo" id="cloudStatus"><i></i> Demo mode</span><button class="connect-button" id="cloudConnect">Connect cloud</button><label class="role-switcher"><span>Preview as</span><select id="roleSelect" aria-label="Preview role"><option value="student">Student</option><option value="faculty">Faculty</option></select></label>
+          <button class="icon-button" id="searchOpen" aria-label="Search">⌕</button>
+          <button class="icon-button notification-button" id="notificationButton" aria-label="Notifications">♧<i></i></button>
+          <div class="top-avatar avatar avatar-indigo">HP</div>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <section class="welcome-row">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-dot"></span> TUESDAY, 13 OCTOBER 2026</div>
+            <h1 id="welcomeTitle">Good morning, Huzaif <span class="wave">✦</span></h1>
+            <p class="welcome-subtitle" id="welcomeSubtitle">Here’s what’s happening with your coursework today.</p>
+          </div>
+          <button class="primary-button" id="primaryAction"><span>＋</span> Browse assignments</button>
+        </section>
+
+        <section class="stats-grid" aria-label="Academic overview">
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-label">Active assignments</span><span class="stat-icon violet">▤</span></div>
+            <div class="stat-value" id="statActive">08 <span class="stat-change neutral">in progress</span></div>
+            <div class="stat-foot"><span class="mini-dot violet-dot"></span> Across 4 subjects</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-label">Submitted on time</span><span class="stat-icon green">✓</span></div>
+            <div class="stat-value" id="statSubmitted">12 <span class="stat-change positive">↑ 2 this week</span></div>
+            <div class="stat-foot"><span class="mini-dot green-dot"></span> Great consistency</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-label">Due this week</span><span class="stat-icon amber">◷</span></div>
+            <div class="stat-value" id="statDue">03 <span class="stat-change warning">needs attention</span></div>
+            <div class="stat-foot"><span class="mini-dot amber-dot"></span> First deadline in 2 days</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span class="stat-label">Average score</span><span class="stat-icon blue">↗</span></div>
+            <div class="stat-value" id="statScore">86<span class="value-suffix">%</span> <span class="stat-change positive">↑ 4.5%</span></div>
+            <div class="stat-foot"><span class="mini-dot blue-dot"></span> Above your last term</div>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <div class="panel assignment-panel" id="mainPanel">
+            <div class="panel-heading">
+              <div><h2 id="panelTitle">Upcoming assignments</h2><p id="panelSubtitle">Stay ahead of your deadlines.</p></div>
+              <button class="text-button" id="viewAllButton">View all <span>→</span></button>
+            </div>
+            <div class="filter-row">
+              <div class="filter-pills" id="assignmentFilters">
+                <button class="filter-pill selected" data-filter="all">All <span>8</span></button>
+                <button class="filter-pill" data-filter="pending">Pending <span>3</span></button>
+                <button class="filter-pill" data-filter="submitted">Submitted <span>4</span></button>
+                <button class="filter-pill" data-filter="graded">Graded <span>1</span></button>
+              </div>
+              <button class="sort-button" id="sortButton">↕ <span>Due date</span></button>
+            </div>
+            <div class="assignment-list" id="assignmentList"></div>
+            <div class="empty-state hidden" id="emptyState"><div class="empty-icon">▤</div><strong>No assignments here</strong><p>Try another filter or check back later.</p></div>
+            <button class="load-more" id="loadMore">Show all assignments <span>↓</span></button>
+          </div>
+
+          <div class="right-column">
+            <section class="panel deadline-panel">
+              <div class="panel-heading compact"><div><h2>Deadline overview</h2><p>Your week at a glance</p></div><button class="tiny-icon-button" aria-label="More options">•••</button></div>
+              <div class="week-strip" id="weekStrip"></div>
+              <div class="deadline-highlight"><div class="deadline-symbol">◷</div><div><strong>Next deadline</strong><p id="nextDeadlineText">Database Systems · 15 Oct, 11:59 PM</p></div></div>
+              <div class="deadline-progress"><div class="progress-label"><span>Weekly completion</span><strong>72%</strong></div><div class="progress-track"><span style="width:72%"></span></div></div>
+            </section>
+            <section class="panel activity-panel">
+              <div class="panel-heading compact"><div><h2>Recent activity</h2><p>Latest updates in your workspace</p></div><button class="text-button" id="activityViewAll">See all</button></div>
+              <div class="activity-list">
+                <div class="activity-item"><div class="activity-icon activity-green">✓</div><div class="activity-copy"><p><strong>Assignment submitted</strong></p><span>Data Structures · 2 hours ago</span></div><span class="activity-dot"></span></div>
+                <div class="activity-item"><div class="activity-icon activity-blue">↥</div><div class="activity-copy"><p><strong>New assignment posted</strong></p><span>Cloud Computing · Yesterday</span></div></div>
+                <div class="activity-item"><div class="activity-icon activity-violet">★</div><div class="activity-copy"><p><strong>Grade published: 9/10</strong></p><span>Artificial Intelligence · 2 days ago</span></div></div>
+              </div>
+            </section>
+            <section class="tip-card"><div class="tip-spark">✦</div><div><strong>Stay one step ahead</strong><p>Submit your work early to avoid last-minute upload issues.</p><button id="tipsButton">View study tips <span>→</span></button></div><div class="tip-decoration">✳</div></section>
+          </div>
+        </section>
+
+        <footer class="footer"><span>© 2026 CloudClass</span><span><i class="footer-status"></i> Cloud services operational</span><span>Built for better learning <b>✦</b></span></footer>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header"><div><div class="modal-kicker">CLOUDCLASS WORKSPACE</div><h2 id="modalTitle">Submit assignment</h2></div><button class="modal-close" id="modalClose" aria-label="Close">×</button></div>
+      <div id="modalBody"></div>
+    </section>
+  </div>
+  <div class="search-overlay hidden" id="searchOverlay">
+    <div class="search-box"><span>⌕</span><input id="searchInput" placeholder="Search assignments, subjects..." autocomplete="off"/><button id="searchClose">Esc</button></div>
+    <div class="search-hint">Try “Cloud Computing” or “Database Systems”</div>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
