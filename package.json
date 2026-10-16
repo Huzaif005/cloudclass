@@ -1,0 +1,35 @@
+{
+  "name": "cloudclass-aws",
+  "version": "2.0.0",
+  "description": "CloudClass — Academic Workspace and Cloud Assignment Portal configured for AWS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "cloudclass",
+    "aws",
+    "s3",
+    "assignment-portal",
+    "academic",
+    "plsql",
+    "oracle"
+  ],
+  "author": "CloudClass Team",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.758.0",
+    "@aws-sdk/s3-request-presigner": "^3.758.0",
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.8.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.7.1",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.12.1",
+    "multer": "^1.4.5-lts.1"
+  }
+}

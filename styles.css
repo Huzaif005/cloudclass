@@ -6,4 +6,104 @@
 @media(max-width:390px){.stats-grid{grid-template-columns:1fr 1fr}.stat-value{font-size:21px}.stat-foot{font-size:8px}.filter-pill{font-size:9px;padding:7px 5px}.assignment-row{grid-template-columns:32px minmax(0,1fr) auto;gap:7px}.subject-icon{width:32px;height:32px}.assignment-side{max-width:84px}.status-pill{font-size:7px}}
 
 .cloud-status{display:inline-flex;align-items:center;gap:6px;border-radius:7px;padding:7px 9px;font-size:9px;font-weight:800;white-space:nowrap}.cloud-status i{width:6px;height:6px;border-radius:50%;background:#d99b43}.cloud-status.live{background:#e6f7ef;color:#218c68}.cloud-status.live i{background:#28a979}.cloud-status.demo{background:#fff4e2;color:#a87322}.connect-button{border:1px solid #e6e4ff;background:#f3f2ff;color:#5c55d9;border-radius:8px;padding:8px 10px;font-size:10px;font-weight:800;white-space:nowrap}.connect-button:hover{background:#e9e7ff}.assignment-detail{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding:13px;background:#faf9ff;border-radius:12px}.assignment-detail strong{font-size:12px}.assignment-detail p{font-size:10px;color:#9296a8;margin:5px 0 0}.submission-review-list{display:grid;gap:10px}.submission-review{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid #eeeef5;border-radius:11px}.submission-review .review-copy{min-width:0;flex:1}.submission-review strong{display:block;font-size:11px;overflow-wrap:anywhere}.submission-review small{display:block;font-size:9px;color:#9296a8;margin-top:4px}.submission-review a{font-size:10px;color:#5c55e7;font-weight:700;text-decoration:none;white-space:nowrap}.cloud-note{font-size:10px;line-height:1.6;color:#85899d;background:#f8f8ff;border-radius:10px;padding:11px;margin:0 0 14px}.cloud-user-label{font-size:10px;color:#9296a8;margin-top:7px}
+.status-rejected{background:#ffebee;color:#d32f2f}.status-verified{background:#e8f5e9;color:#2e7d32}.activity-amber{background:#fff3df;color:#d98b23}.activity-red{background:#ffebee;color:#d32f2f}
 @media(max-width:700px){.cloud-status{display:none}.connect-button{padding:7px 8px;font-size:9px}.topbar-actions{gap:6px}}
+
+/* Interactive Month Calendar Styles */
+.calendar-view-wrap{display:grid;gap:18px;margin-top:12px}
+.cal-nav-bar{display:flex;align-items:center;justify-content:space-between;padding:0 4px}
+.cal-nav-title{font-family:Manrope,sans-serif;font-weight:800;font-size:16px;color:#23273e}
+.cal-nav-btns{display:flex;gap:8px}
+.cal-arrow-btn{border:1px solid #e5e5f0;background:#fff;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;color:#5a5e74;transition:.15s}
+.cal-arrow-btn:hover{background:#f4f4fc;color:var(--primary)}
+.cal-month-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center}
+.cal-day-header{font-size:10px;font-weight:800;color:#9b9eaf;padding:6px 0;letter-spacing:0.5px}
+.cal-day-btn{border:1px solid #f0f0f7;background:#fff;border-radius:10px;padding:10px 4px 8px;display:grid;justify-items:center;gap:4px;color:#4c5067;transition:.15s;min-height:54px;position:relative}
+.cal-day-btn:hover{background:#f6f5ff;border-color:#dcd8ff}
+.cal-day-btn.other-month{opacity:0.35;background:#fafafc}
+.cal-day-btn.today{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 6px 16px rgba(92,85,231,.25)}
+.cal-day-btn.today strong{color:#fff}
+.cal-day-btn strong{font-size:13px;font-weight:800}
+.cal-badge{display:inline-block;padding:2px 6px;border-radius:6px;font-size:8px;font-weight:800;background:#fff3df;color:#c27b1f;line-height:1}
+.cal-day-btn.today .cal-badge{background:#fff;color:var(--primary)}
+.cal-legend{display:flex;align-items:center;gap:16px;font-size:10px;color:#898c9f;padding:10px 4px 0;border-top:1px solid #f0f0f7}
+.cal-legend span{display:inline-flex;align-items:center;gap:6px}
+.cal-legend i{width:8px;height:8px;border-radius:50%}
+.cal-legend .legend-today{background:var(--primary)}
+.cal-legend .legend-due{background:#f0ae51}
+
+/* ========================================================================== */
+/* FULL PAGE ACADEMIC CALENDAR WORKSPACE                                     */
+/* ========================================================================== */
+.calendar-workspace{background:#fff;border:1px solid #eeeef5;border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 28px;margin-bottom:24px}
+.calendar-header-bar{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid #f0f0f7;flex-wrap:wrap}
+.cal-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.4px;color:#7c75ec;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.cal-main-title{font-family:Manrope,sans-serif;font-size:26px;font-weight:800;letter-spacing:-.8px;color:#20243a;margin:0 0 6px}
+.cal-subtitle{font-size:12px;color:#85899d;margin:0}
+.cal-header-actions{display:flex;align-items:center;gap:12px}
+.cal-nav-group{display:inline-flex;align-items:center;gap:6px;background:#f8f8fc;padding:4px;border-radius:12px;border:1px solid #ececf5}
+.cal-nav-btn{border:0;background:transparent;border-radius:8px;padding:8px 14px;font-size:11px;font-weight:700;color:#5a5e74;transition:.18s;cursor:pointer}
+.cal-nav-btn:hover{background:#fff;color:var(--primary);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.cal-nav-btn.today-btn{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(92,85,231,.25)}
+.cal-nav-btn.today-btn:hover{background:var(--primary-dark)}
+
+.calendar-workspace-layout{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(310px,1.1fr);gap:22px;align-items:start}
+.cal-grid-card{background:#fafaff;border:1px solid #eef0fa;border-radius:16px;padding:18px 16px 14px}
+.cal-weekday-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;margin-bottom:10px}
+.cal-weekday-col{font-size:10px;font-weight:800;color:#9b9eaf;letter-spacing:1px;padding:6px 0}
+.cal-days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+
+.cal-cell{background:#fff;border:1px solid #f0f0f7;border-radius:12px;padding:8px 7px;min-height:86px;display:flex;flex-direction:column;gap:5px;cursor:pointer;transition:.18s;position:relative;text-align:left}
+.cal-cell:hover{border-color:#cdc9f7;background:#fbfbff;transform:translateY(-1px);box-shadow:0 4px 12px rgba(92,85,231,.08)}
+.cal-cell.other-month{opacity:0.32;background:#fdfdff}
+.cal-cell.is-today{background:#f6f5ff;border:2px solid var(--primary);box-shadow:0 4px 16px rgba(92,85,231,.18)}
+.cal-cell.is-selected{box-shadow:0 0 0 3px #8b83fa;border-color:var(--primary)}
+
+.cal-cell-top{display:flex;align-items:center;justify-content:space-between;width:100%}
+.cal-day-num{font-family:Manrope,sans-serif;font-size:13px;font-weight:800;color:#353a52}
+.cal-cell.is-today .cal-day-num{color:var(--primary);font-size:14px}
+.today-pill{font-size:8px;font-weight:800;background:var(--primary);color:#fff;padding:2px 5px;border-radius:5px;letter-spacing:0.5px}
+
+.cal-chip-list{display:flex;flex-direction:column;gap:3px;margin-top:auto;width:100%}
+.cal-chip{font-size:9px;font-weight:700;padding:3px 6px;border-radius:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3;display:flex;align-items:center;gap:4px}
+.cal-chip.chip-pending{background:#fff3df;color:#c07718;border-left:3px solid #f0ae51}
+.cal-chip.chip-submitted{background:#e6f7ef;color:#1e8763;border-left:3px solid #28a979}
+.cal-chip.chip-graded{background:#eeedff;color:#5a50d8;border-left:3px solid #776be6}
+
+.cal-grid-legend{display:flex;align-items:center;gap:16px;font-size:10px;color:#8d91a5;padding:14px 4px 0;margin-top:14px;border-top:1px solid #ebebf5;flex-wrap:wrap}
+.cal-grid-legend span{display:inline-flex;align-items:center;gap:6px}
+.legend-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.legend-dot.today-dot{background:var(--primary)}
+.legend-dot.pending-dot{background:#f0ae51}
+.legend-dot.submitted-dot{background:#28a979}
+.legend-dot.graded-dot{background:#776be6}
+
+/* Selected Day Inspector Card */
+.cal-day-detail-card{background:#fff;border:1px solid #ececf5;border-radius:16px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.03)}
+.day-detail-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid #f1f1f7}
+.day-detail-kicker{font-size:9px;font-weight:800;letter-spacing:1.2px;color:#9b9eaf;display:block;margin-bottom:3px}
+.day-detail-date{font-family:Manrope,sans-serif;font-size:16px;font-weight:800;color:#22263d;margin:0}
+.day-detail-tag{font-size:9px;font-weight:800;background:var(--lav);color:var(--primary);padding:4px 8px;border-radius:6px}
+.day-detail-tag.hidden{display:none}
+
+.day-detail-body{display:grid;gap:12px}
+.day-assignment-card{border:1px solid #eef0f8;border-radius:12px;padding:14px;background:#fafaff;display:grid;gap:9px}
+.day-assignment-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.day-assignment-title{font-size:12px;font-weight:700;color:#282c44;margin:0 0 3px}
+.day-assignment-subject{font-size:10px;color:#85899d;font-weight:600}
+.day-assignment-due{font-size:10px;font-weight:700;color:#d98737;display:flex;align-items:center;gap:4px}
+.day-assignment-points{font-size:10px;font-weight:700;color:#6b64e8;background:#efeeff;padding:2px 7px;border-radius:5px}
+.day-assignment-desc{font-size:10px;color:#787d94;line-height:1.5;margin:0}
+.day-assignment-submit-btn{border:0;background:var(--primary);color:#fff;border-radius:8px;padding:8px 12px;font-size:10px;font-weight:700;cursor:pointer;transition:.15s;justify-self:start;margin-top:2px}
+.day-assignment-submit-btn:hover{background:var(--primary-dark)}
+
+.day-empty-state{text-align:center;padding:30px 10px;color:#8e92a5}
+.day-empty-icon{font-size:28px;margin-bottom:8px;color:#a8a4f0}
+.day-empty-state strong{font-size:12px;display:block;color:#3f445c;margin-bottom:4px}
+.day-empty-state p{font-size:11px;margin:0}
+
+@media(max-width:1050px){
+  .calendar-workspace-layout{grid-template-columns:1fr}
+}
+
+

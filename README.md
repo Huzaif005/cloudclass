@@ -1,101 +1,109 @@
-# CloudClass — Real-Time Cloud Assignment Portal
+# CloudClass — AWS Academic Assignment Portal
 
-A responsive Cloud Computing mini-project with a student/faculty dashboard and Firebase integration. Once configured, CloudClass uses **Firebase Authentication**, **Cloud Firestore real-time listeners**, and **Firebase Cloud Storage**.
+A production-ready academic workspace and cloud assignment management portal engineered for deployment on **Amazon Web Services (AWS)**. Features student and faculty dashboards, secure JWT authentication, automated deadline tracking, direct file storage via **Amazon S3**, and a complete enterprise **Oracle PL/SQL Relational Database** ready for **Amazon RDS**.
 
-## What is live in this version?
+---
 
-- Faculty creates an assignment → authenticated student dashboards receive it automatically through Firestore `onSnapshot()` listeners.
-- Student uploads a PDF/DOC/DOCX/ZIP → file bytes are uploaded to Firebase Storage and submission metadata is saved in Firestore.
-- Faculty submission review list updates automatically as new submissions arrive.
-- Each student queries only their own submission documents; faculty can view all submissions according to the security rules.
-- New accounts are students by default. Faculty role must be assigned by a trusted administrator.
+## 🏛️ System Architecture on AWS
 
-## 1. Run the site
+```mermaid
+graph TD
+    Client["Browser / Client (SPA HTML/CSS/JS)"] -->|HTTP / REST API| EC2["AWS Backend Server (Node/Express)<br/>Elastic Beanstalk / App Runner / EC2"]
+    EC2 -->|JWT Auth & Metadata| RDS[("Amazon RDS (Oracle Database)<br/>PL/SQL Packages & Triggers")]
+    EC2 -->|Direct Stream / Presigned URLs| S3[("Amazon S3 Bucket<br/>Encrypted Assignment Files")]
+```
 
-This project uses JavaScript modules and Firebase's CDN SDK, so run it through a local web server and use an internet connection.
+| Component | AWS Service | Purpose |
+| :--- | :--- | :--- |
+| **Compute & API** | **AWS Elastic Beanstalk / App Runner / EC2** | Runs the Node.js / Express REST API and serves the frontend dashboard. |
+| **File Storage** | **Amazon Simple Storage Service (S3)** | High-durability object storage for student homework, PDFs, code ZIPs, and documents. |
+| **Database** | **Amazon RDS (Oracle Database)** | Relational schema, automated PL/SQL packages, audit trails, triggers, and gradebooks. |
+| **Access Control** | **AWS IAM & JWT Tokens** | Cryptographically signed authentication tokens with role verification (Student vs. Faculty). |
 
-### Python
+---
+
+## 🚀 Quick Start (Local & Development)
+
+### 1. Install Dependencies
 ```bash
-python -m http.server 8000
-```
-Then open `http://localhost:8000`.
-
-Or open the folder in VS Code and use the **Live Server** extension.
-
-The UI starts in **Demo mode** until a real Firebase web config is added.
-
-## 2. Create Firebase services
-
-1. Open the Firebase Console and create a project.
-2. In **Project settings → General → Your apps**, add a Web App and copy its config.
-3. Replace the placeholder values in `firebase-config.js` with the Web App configuration.
-4. In **Authentication → Sign-in method**, enable **Email/Password**.
-5. Create a **Cloud Firestore** database.
-6. Enable **Cloud Storage**.
-7. Publish the rules in `firebase.rules.example` as your Firestore rules and `storage.rules.example` as your Storage rules. Review and test them before using real student data.
-
-Firebase Web API config values are expected in browser apps; do not put service-account JSON or private server credentials in this project.
-
-## 3. Set up the first faculty account
-
-Registration intentionally creates **student** profiles only. This prevents a visitor from selecting the faculty role in the browser.
-
-1. Open the website and choose **Connect cloud → Create student account** to create an account.
-2. In Firebase Console → Authentication → Users, copy that user's UID.
-3. In Firestore, open `users/{UID}` and change its `role` field from `student` to `faculty`.
-4. Sign out and sign back in. The app reads the role from Firestore and switches to the faculty dashboard.
-5. Use **Create assignment** to publish the first real assignment.
-6. Create a second account in another browser/incognito window. It remains a student and should see the assignment appear automatically.
-7. Upload a test PDF as the student. The faculty dashboard's submission count and review list should update automatically.
-
-Never allow users to promote themselves to faculty. For a larger system, assign faculty through a trusted admin backend or Firebase custom claims.
-
-## 4. Data model
-
-### `users/{uid}`
-```json
-{
-  "displayName": "Student Name",
-  "email": "student@example.com",
-  "role": "student",
-  "createdAt": "Firestore server timestamp"
-}
+npm install
 ```
 
-### `assignments/{assignmentId}`
-Fields include `title`, `subject`, `instructions`, `deadline` (ISO timestamp), `code`, `points`, `createdBy`, `createdByName`, and `createdAt`.
-
-### `submissions/{submissionId}`
-Fields include `assignmentId`, `assignmentTitle`, `studentId`, `studentName`, `studentEmail`, `fileName`, `storagePath`, `downloadURL`, `note`, `status`, and `submittedAt`.
-
-File bytes are stored under `submissions/{studentUid}/{assignmentId}/{fileName}` in Cloud Storage. Firestore stores the metadata and file path/URL.
-
-## 5. Deploy online with Firebase Hosting
-
-Install Node.js, then run:
+### 2. Configure Environment (Optional)
+Copy `.env.example` to `.env`:
 ```bash
-npm install -g firebase-tools
-firebase login
-firebase init hosting
-firebase deploy
+cp .env.example .env
 ```
-Select the Firebase project. Choose this folder as the public directory, configure it as a single-page app only if you want that behavior, and deploy. Since this is a static multi-page-free app, the default static hosting setup is sufficient.
+*(If AWS S3 credentials are not yet populated, CloudClass automatically operates with local storage fallback in `./uploads`, allowing instant local testing).*
 
-## 6. Security notes
+### 3. Start the Server
+```bash
+npm start
+```
+Open **`http://localhost:8000`** in your browser.
 
-- The provided rules are a teaching-project starting point, not a full production security review.
-- Firestore rules enforce student-owned submission reads and faculty-only assignment creation.
-- Storage rules limit size and allow reads by the owning student or faculty.
-- A download URL can act like a bearer link. Avoid sharing it publicly; for stricter control, implement authenticated server-side downloads instead of persisting long-lived download URLs.
-- For production, validate assignment IDs, deadlines, content types, file extensions, quotas, and grading workflows; test that Student A cannot access Student B's files.
-- Do not expose Firebase Admin SDK credentials in browser code.
+---
 
-## Project files
+## 🔑 Demo & Test Credentials
 
-- `index.html` — dashboard interface
-- `styles.css` — responsive UI
-- `app.js` — interface logic, authentication UI, and live listeners
-- `firebase-service.js` — Firebase Authentication, Firestore, and Storage functions
-- `firebase-config.js` — your Firebase Web App config placeholders
-- `firebase.rules.example` — Firestore security rules starter
-- `storage.rules.example` — Cloud Storage rules starter
+| Role | Identifier / College ID | Password | Portal View |
+| :--- | :--- | :--- | :--- |
+| **Student** | `102938` (or `john.doe@cloudclass.edu`) | `student123` | Student Dashboard & Submission Upload |
+| **Faculty** | `FAC-101` (or `alan.turing@cloudclass.edu`) | `faculty123` | Faculty Dashboard, Create & Grade |
+| **Admin** | `admin` (or `admin@cloudclass.edu`) | `Admin@123` | Institutional Administration |
+
+---
+
+## 📁 Project Directory Structure
+
+```
+cloudclass_realtime/
+├── index.html                  # Responsive student & faculty dashboard UI
+├── styles.css                  # Modern UI styles, dark accents, status pills
+├── app.js                      # Frontend application logic & live REST polling
+├── login.html                  # Dual-portal login interface (Student 6-digit ID & Faculty ID)
+├── login.css                   # Login styling and responsive card layout
+├── login.js                    # Portal authentication controller
+├── api-service.js              # AWS Cloud REST client (replaces Firebase SDK)
+├── server.js                   # Node.js Express backend with AWS S3 integration
+├── package.json                # Project dependencies (@aws-sdk/client-s3, express, multer, etc.)
+├── Dockerfile                  # Container definition for AWS App Runner & ECS
+├── docker-compose.yml          # Container orchestration for local / EC2 deployment
+├── aws-deployment.md           # Step-by-step deployment guide for Elastic Beanstalk, EC2, App Runner
+├── .env.example                # Template for AWS S3 and server environment variables
+├── database/                   # Enterprise Oracle PL/SQL Database System (Amazon RDS)
+│   ├── init_all.sql            # Master installer script
+│   ├── schema.sql              # Tables (users, assignments, submissions), constraints, indexes
+│   ├── triggers.sql            # Auto-late detection, max marks check, and audit triggers
+│   ├── pkg_auth.sql            # Salted SHA-256 auth, brute-force lockout, session logging
+│   ├── pkg_assignment.sql      # Assignment creation, course enrollment, faculty queries
+│   ├── pkg_submission.sql      # Submission validation, resubmissions, grading & feedback
+│   ├── views.sql               # Analytical views (Faculty dashboard, Gradebook, Audit)
+│   ├── seed_data.sql           # Demo accounts, courses, assignments, and submissions
+│   ├── test_execution.sql      # Test harness validating login, lockout, and grading logic
+│   └── README.md               # Complete PL/SQL architecture and execution manual
+└── README.md                   # Project overview & architectural guide
+```
+
+---
+
+## ☁️ Deploying to AWS
+
+See [`aws-deployment.md`](file:///d:/cloudclass_realtime/aws-deployment.md) for full instructions:
+
+1. **AWS Elastic Beanstalk**: Easiest single-command deployment with automatic load balancing.
+2. **AWS App Runner**: Modern serverless container hosting directly from GitHub or Docker.
+3. **AWS EC2**: Virtual server deployment with NGINX reverse proxy and PM2 process manager.
+4. **Amazon S3**: Secure bucket setup for assignments with presigned download links.
+5. **Amazon RDS**: Host the [PL/SQL schema](file:///d:/cloudclass_realtime/database/schema.sql) in the cloud.
+
+---
+
+## 🛡️ Enterprise Security Features
+
+- [x] **Zero Client Credential Leakage**: No database or cloud storage keys are exposed on the client.
+- [x] **Secure S3 Access**: Direct access to bucket files is protected using backend-generated, time-limited presigned URLs.
+- [x] **Deadline Enforcement**: Submissions past assignment deadlines are automatically flagged as `'LATE'` by database triggers.
+- [x] **Grade Validation**: Prevents awarding marks exceeding assignment maximum points (`ORA-20003`).
+- [x] **Audit Trail Preservation**: State transitions and grade changes are logged immutably in `submission_history`.
+- [x] **Brute-Force Lockout**: 5 failed login attempts lock the user account in PL/SQL.

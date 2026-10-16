@@ -45,82 +45,139 @@
         <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
         <div class="breadcrumb"><span>Workspace</span><span class="crumb-slash">/</span><strong id="breadcrumbCurrent">Overview</strong></div>
         <div class="topbar-actions">
-          <span class="cloud-status demo" id="cloudStatus"><i></i> Demo mode</span><button class="connect-button" id="cloudConnect">Connect cloud</button><label class="role-switcher"><span>Preview as</span><select id="roleSelect" aria-label="Preview role"><option value="student">Student</option><option value="faculty">Faculty</option></select></label>
+          <span class="cloud-status demo" id="cloudStatus"><i></i> Demo mode</span><button class="connect-button" id="cloudConnect">Connect cloud</button>
           <button class="icon-button" id="searchOpen" aria-label="Search">⌕</button>
           <button class="icon-button notification-button" id="notificationButton" aria-label="Notifications">♧<i></i></button>
-          <div class="top-avatar avatar avatar-indigo">HP</div>
+          <div class="top-avatar avatar avatar-indigo" id="topAvatar">HP</div>
         </div>
       </header>
 
       <div class="page-content">
         <section class="welcome-row">
           <div>
-            <div class="eyebrow"><span class="eyebrow-dot"></span> TUESDAY, 13 OCTOBER 2026</div>
+            <div class="eyebrow" id="todayEyebrow"><span class="eyebrow-dot"></span> <span id="todayDateStr">TODAY</span></div>
             <h1 id="welcomeTitle">Good morning, Huzaif <span class="wave">✦</span></h1>
             <p class="welcome-subtitle" id="welcomeSubtitle">Here’s what’s happening with your coursework today.</p>
           </div>
           <button class="primary-button" id="primaryAction"><span>＋</span> Browse assignments</button>
         </section>
 
-        <section class="stats-grid" aria-label="Academic overview">
-          <article class="stat-card">
-            <div class="stat-top"><span class="stat-label">Active assignments</span><span class="stat-icon violet">▤</span></div>
-            <div class="stat-value" id="statActive">08 <span class="stat-change neutral">in progress</span></div>
-            <div class="stat-foot"><span class="mini-dot violet-dot"></span> Across 4 subjects</div>
-          </article>
-          <article class="stat-card">
-            <div class="stat-top"><span class="stat-label">Submitted on time</span><span class="stat-icon green">✓</span></div>
-            <div class="stat-value" id="statSubmitted">12 <span class="stat-change positive">↑ 2 this week</span></div>
-            <div class="stat-foot"><span class="mini-dot green-dot"></span> Great consistency</div>
-          </article>
-          <article class="stat-card">
-            <div class="stat-top"><span class="stat-label">Due this week</span><span class="stat-icon amber">◷</span></div>
-            <div class="stat-value" id="statDue">03 <span class="stat-change warning">needs attention</span></div>
-            <div class="stat-foot"><span class="mini-dot amber-dot"></span> First deadline in 2 days</div>
-          </article>
-          <article class="stat-card">
-            <div class="stat-top"><span class="stat-label">Average score</span><span class="stat-icon blue">↗</span></div>
-            <div class="stat-value" id="statScore">86<span class="value-suffix">%</span> <span class="stat-change positive">↑ 4.5%</span></div>
-            <div class="stat-foot"><span class="mini-dot blue-dot"></span> Above your last term</div>
-          </article>
-        </section>
+        <!-- OVERVIEW & ASSIGNMENTS WORKSPACE -->
+        <div id="overviewSection">
+          <section class="stats-grid" aria-label="Academic overview">
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-label">Active assignments</span><span class="stat-icon violet">▤</span></div>
+              <div class="stat-value" id="statActive">08 <span class="stat-change neutral">in progress</span></div>
+              <div class="stat-foot"><span class="mini-dot violet-dot"></span> Across 4 subjects</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-label">Submitted on time</span><span class="stat-icon green">✓</span></div>
+              <div class="stat-value" id="statSubmitted">12 <span class="stat-change positive">↑ 2 this week</span></div>
+              <div class="stat-foot"><span class="mini-dot green-dot"></span> Great consistency</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-label">Due this week</span><span class="stat-icon amber">◷</span></div>
+              <div class="stat-value" id="statDue">03 <span class="stat-change warning">needs attention</span></div>
+              <div class="stat-foot"><span class="mini-dot amber-dot"></span> First deadline in 2 days</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-label">Average score</span><span class="stat-icon blue">↗</span></div>
+              <div class="stat-value" id="statScore">86<span class="value-suffix">%</span> <span class="stat-change positive">↑ 4.5%</span></div>
+              <div class="stat-foot"><span class="mini-dot blue-dot"></span> Above your last term</div>
+            </article>
+          </section>
 
-        <section class="content-grid">
-          <div class="panel assignment-panel" id="mainPanel">
-            <div class="panel-heading">
-              <div><h2 id="panelTitle">Upcoming assignments</h2><p id="panelSubtitle">Stay ahead of your deadlines.</p></div>
-              <button class="text-button" id="viewAllButton">View all <span>→</span></button>
-            </div>
-            <div class="filter-row">
-              <div class="filter-pills" id="assignmentFilters">
-                <button class="filter-pill selected" data-filter="all">All <span>8</span></button>
-                <button class="filter-pill" data-filter="pending">Pending <span>3</span></button>
-                <button class="filter-pill" data-filter="submitted">Submitted <span>4</span></button>
-                <button class="filter-pill" data-filter="graded">Graded <span>1</span></button>
+          <section class="content-grid">
+            <div class="panel assignment-panel" id="mainPanel">
+              <div class="panel-heading">
+                <div><h2 id="panelTitle">Upcoming assignments</h2><p id="panelSubtitle">Stay ahead of your deadlines.</p></div>
+                <button class="text-button" id="viewAllButton">View all <span>→</span></button>
               </div>
-              <button class="sort-button" id="sortButton">↕ <span>Due date</span></button>
+              <div class="filter-row">
+                <div class="filter-pills" id="assignmentFilters">
+                  <button class="filter-pill selected" data-filter="all">All <span>8</span></button>
+                  <button class="filter-pill" data-filter="pending">Pending <span>3</span></button>
+                  <button class="filter-pill" data-filter="submitted">Submitted <span>4</span></button>
+                  <button class="filter-pill" data-filter="graded">Graded <span>1</span></button>
+                </div>
+                <button class="sort-button" id="sortButton">↕ <span>Due date</span></button>
+              </div>
+              <div class="assignment-list" id="assignmentList"></div>
+              <div class="empty-state hidden" id="emptyState"><div class="empty-icon">▤</div><strong>No assignments here</strong><p>Try another filter or check back later.</p></div>
+              <button class="load-more" id="loadMore">Show all assignments <span>↓</span></button>
             </div>
-            <div class="assignment-list" id="assignmentList"></div>
-            <div class="empty-state hidden" id="emptyState"><div class="empty-icon">▤</div><strong>No assignments here</strong><p>Try another filter or check back later.</p></div>
-            <button class="load-more" id="loadMore">Show all assignments <span>↓</span></button>
+
+            <div class="right-column">
+              <section class="panel deadline-panel">
+                <div class="panel-heading compact"><div><h2>Deadline overview</h2><p>Your week at a glance</p></div><button class="tiny-icon-button" aria-label="More options">•••</button></div>
+                <div class="week-strip" id="weekStrip"></div>
+                <div class="deadline-highlight"><div class="deadline-symbol">◷</div><div><strong>Next deadline</strong><p id="nextDeadlineText">Loading nearest deadline...</p></div></div>
+                <div class="deadline-progress"><div class="progress-label"><span>Weekly completion</span><strong>72%</strong></div><div class="progress-track"><span style="width:72%"></span></div></div>
+              </section>
+              <section class="panel activity-panel">
+                <div class="panel-heading compact"><div><h2>Recent activity</h2><p>Latest updates in your workspace</p></div><button class="text-button" id="activityViewAll">See all</button></div>
+                <div class="activity-list">
+                  <div class="activity-item"><div class="activity-icon activity-green">✓</div><div class="activity-copy"><p><strong>Assignment submitted</strong></p><span>Data Structures · 2 hours ago</span></div><span class="activity-dot"></span></div>
+                  <div class="activity-item"><div class="activity-icon activity-blue">↥</div><div class="activity-copy"><p><strong>New assignment posted</strong></p><span>Cloud Computing · Yesterday</span></div></div>
+                  <div class="activity-item"><div class="activity-icon activity-violet">★</div><div class="activity-copy"><p><strong>Grade published: 9/10</strong></p><span>Artificial Intelligence · 2 days ago</span></div></div>
+                </div>
+              </section>
+              <section class="tip-card"><div class="tip-spark">✦</div><div><strong>Stay one step ahead</strong><p>Submit your work early to avoid last-minute upload issues.</p><button id="tipsButton">View study tips <span>→</span></button></div><div class="tip-decoration">✳</div></section>
+            </div>
+          </section>
+        </div>
+
+        <!-- FULL-PAGE INTERACTIVE CALENDAR WORKSPACE -->
+        <section class="panel calendar-workspace hidden" id="calendarSection" aria-label="Academic Calendar Workspace">
+          <div class="calendar-header-bar">
+            <div>
+              <div class="cal-eyebrow"><span class="eyebrow-dot"></span> ACADEMIC SCHEDULE &amp; DEADLINES</div>
+              <h2 class="cal-main-title" id="calMonthYearTitle">Academic Calendar</h2>
+              <p class="cal-subtitle" id="calTodaySubtitle">Loading today's schedule...</p>
+            </div>
+            <div class="cal-header-actions">
+              <div class="cal-nav-group">
+                <button class="cal-nav-btn" id="calWorkspacePrev" title="Previous Month">← Prev</button>
+                <button class="cal-nav-btn today-btn" id="calWorkspaceToday" title="Jump to Today's Date">Today</button>
+                <button class="cal-nav-btn" id="calWorkspaceNext" title="Next Month">Next →</button>
+              </div>
+            </div>
           </div>
 
-          <div class="right-column">
-            <section class="panel deadline-panel">
-              <div class="panel-heading compact"><div><h2>Deadline overview</h2><p>Your week at a glance</p></div><button class="tiny-icon-button" aria-label="More options">•••</button></div>
-              <div class="week-strip" id="weekStrip"></div>
-              <div class="deadline-highlight"><div class="deadline-symbol">◷</div><div><strong>Next deadline</strong><p id="nextDeadlineText">Database Systems · 15 Oct, 11:59 PM</p></div></div>
-              <div class="deadline-progress"><div class="progress-label"><span>Weekly completion</span><strong>72%</strong></div><div class="progress-track"><span style="width:72%"></span></div></div>
-            </section>
-            <section class="panel activity-panel">
-              <div class="panel-heading compact"><div><h2>Recent activity</h2><p>Latest updates in your workspace</p></div><button class="text-button" id="activityViewAll">See all</button></div>
-              <div class="activity-list">
-                <div class="activity-item"><div class="activity-icon activity-green">✓</div><div class="activity-copy"><p><strong>Assignment submitted</strong></p><span>Data Structures · 2 hours ago</span></div><span class="activity-dot"></span></div>
-                <div class="activity-item"><div class="activity-icon activity-blue">↥</div><div class="activity-copy"><p><strong>New assignment posted</strong></p><span>Cloud Computing · Yesterday</span></div></div>
-                <div class="activity-item"><div class="activity-icon activity-violet">★</div><div class="activity-copy"><p><strong>Grade published: 9/10</strong></p><span>Artificial Intelligence · 2 days ago</span></div></div>
+          <div class="calendar-workspace-layout">
+            <div class="cal-grid-card">
+              <div class="cal-weekday-grid">
+                <div class="cal-weekday-col">MON</div>
+                <div class="cal-weekday-col">TUE</div>
+                <div class="cal-weekday-col">WED</div>
+                <div class="cal-weekday-col">THU</div>
+                <div class="cal-weekday-col">FRI</div>
+                <div class="cal-weekday-col">SAT</div>
+                <div class="cal-weekday-col">SUN</div>
               </div>
-            </section>
-            <section class="tip-card"><div class="tip-spark">✦</div><div><strong>Stay one step ahead</strong><p>Submit your work early to avoid last-minute upload issues.</p><button id="tipsButton">View study tips <span>→</span></button></div><div class="tip-decoration">✳</div></section>
+              <div class="cal-days-grid" id="calDaysGrid">
+                <!-- Dynamically rendered day cells with live today highlight & assignment chips -->
+              </div>
+              <div class="cal-grid-legend">
+                <span><i class="legend-dot today-dot"></i> Today's Date</span>
+                <span><i class="legend-dot pending-dot"></i> Pending Deadline</span>
+                <span><i class="legend-dot submitted-dot"></i> Submitted</span>
+                <span><i class="legend-dot graded-dot"></i> Graded</span>
+              </div>
+            </div>
+
+            <aside class="cal-day-detail-card" id="calDayDetailCard">
+              <div class="day-detail-header">
+                <div>
+                  <span class="day-detail-kicker">SELECTED DAY</span>
+                  <h3 class="day-detail-date" id="dayDetailDateLabel">Loading date...</h3>
+                </div>
+                <span class="day-detail-tag" id="dayDetailTodayTag">TODAY</span>
+              </div>
+              <div class="day-detail-body" id="dayDetailBody">
+                <!-- Selected day's assignments rendered here -->
+              </div>
+            </aside>
           </div>
         </section>
 
