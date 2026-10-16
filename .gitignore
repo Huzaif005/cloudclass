@@ -15,6 +15,9 @@ data_store.json
 # Environment & Secrets
 .env
 *.pem
+*serviceAccount*.json
+service-account.json
+credentials.json
 
 # OS & Editor Files
 .DS_Store

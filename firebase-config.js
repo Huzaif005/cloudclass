@@ -1,10 +1,10 @@
-// Paste the Firebase Web App configuration from Firebase Console > Project settings > Your apps.
-// These are browser config values, NOT service-account credentials.
+// Firebase Web App configuration for CloudClass
+// Project: Cloud Assignment System (cloud-assignment-system-104a5)
 export const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_WEB_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_FIREBASE_APP_ID"
+  apiKey: "AIzaSyARgCOaSjsOIsKgzuBcsE9R4i41yuWR8yo",
+  authDomain: "cloud-assignment-system-104a5.firebaseapp.com",
+  projectId: "cloud-assignment-system-104a5",
+  storageBucket: "cloud-assignment-system-104a5.firebasestorage.app",
+  messagingSenderId: "796216279550",
+  appId: "1:796216279550:web:ff21549dc523939a0f00af"
 };
