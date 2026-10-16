@@ -1,20 +1,22 @@
+# Firebase CLI Cache & Logs
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+
 # Dependencies
 node_modules/
 
-# Uploads & Temporary Storage
-uploads/
+# Local data & logs
 *.log
-
-# Environment Variables & Secrets
-.env
-.env.local
-.env.*.local
-*.pem
-
-# Data Store Local Cache
+uploads/
 data_store.json
 
-# OS / Editor Files
+# Environment & Secrets
+.env
+*.pem
+
+# OS & Editor Files
 .DS_Store
 Thumbs.db
 .vscode/

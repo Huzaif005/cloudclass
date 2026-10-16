@@ -1,0 +1,25 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function signedIn() { return request.auth != null; }
+    function isFaculty() {
+      return signedIn() && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == "faculty";
+    }
+    match /submissions/{studentUid}/{assignmentId}/{fileName} {
+      allow create: if signedIn()
+        && request.auth.uid == studentUid
+        && request.resource.size <= 10 * 1024 * 1024
+        && request.resource.name.matches('.*\\.(pdf|doc|docx|zip)')
+        && request.resource.contentType in [
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+          'application/zip',
+          'application/x-zip-compressed',
+          'application/octet-stream'
+        ];
+      allow read: if signedIn() && (request.auth.uid == studentUid || isFaculty());
+      allow update, delete: if false;
+    }
+  }
+}
