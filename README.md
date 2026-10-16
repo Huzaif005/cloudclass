@@ -6,7 +6,7 @@ A responsive, real-time academic workspace and assignment management portal powe
 
 ## 🏛️ System Architecture on Firebase Cloud
 
-```mermaid
+
 graph TD
     Client["Browser / Client (SPA HTML/CSS/JS)"] -->|Web SDK / Auth| Auth["Firebase Authentication<br/>(Email & Password)"]
     Client -->|onSnapshot() Real-Time Sync| Firestore[("Cloud Firestore<br/>(Users, Assignments, Submissions)")]
