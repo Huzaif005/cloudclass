@@ -7,3 +7,18 @@
 
 .cloud-status{display:inline-flex;align-items:center;gap:6px;border-radius:7px;padding:7px 9px;font-size:9px;font-weight:800;white-space:nowrap}.cloud-status i{width:6px;height:6px;border-radius:50%;background:#d99b43}.cloud-status.live{background:#e6f7ef;color:#218c68}.cloud-status.live i{background:#28a979}.cloud-status.demo{background:#fff4e2;color:#a87322}.connect-button{border:1px solid #e6e4ff;background:#f3f2ff;color:#5c55d9;border-radius:8px;padding:8px 10px;font-size:10px;font-weight:800;white-space:nowrap}.connect-button:hover{background:#e9e7ff}.assignment-detail{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding:13px;background:#faf9ff;border-radius:12px}.assignment-detail strong{font-size:12px}.assignment-detail p{font-size:10px;color:#9296a8;margin:5px 0 0}.submission-review-list{display:grid;gap:10px}.submission-review{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid #eeeef5;border-radius:11px}.submission-review .review-copy{min-width:0;flex:1}.submission-review strong{display:block;font-size:11px;overflow-wrap:anywhere}.submission-review small{display:block;font-size:9px;color:#9296a8;margin-top:4px}.submission-review a{font-size:10px;color:#5c55e7;font-weight:700;text-decoration:none;white-space:nowrap}.cloud-note{font-size:10px;line-height:1.6;color:#85899d;background:#f8f8ff;border-radius:10px;padding:11px;margin:0 0 14px}.cloud-user-label{font-size:10px;color:#9296a8;margin-top:7px}
 @media(max-width:700px){.cloud-status{display:none}.connect-button{padding:7px 8px;font-size:9px}.topbar-actions{gap:6px}}
+
+/* Faculty Question Paper & Attachment Styles */
+.faculty-attachment-box{display:flex;align-items:center;gap:12px;background:#f5f4ff;border:1px solid #dfdcff;border-radius:12px;padding:12px 14px;margin-bottom:16px}
+.faculty-attachment-box .attachment-icon{font-size:24px;color:var(--primary);flex-shrink:0}
+.faculty-attachment-box .attachment-info{flex:1;min-width:0}
+.faculty-attachment-box .attachment-info strong{display:block;font-size:11px;color:#2b2e4a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.faculty-attachment-box .attachment-info small{display:block;font-size:9px;color:#797c94;margin-top:2px}
+.attachment-download-btn{background:var(--primary);color:#fff!important;font-size:10px;font-weight:700;text-decoration:none;padding:7px 12px;border-radius:8px;white-space:nowrap;transition:.15s}
+.attachment-download-btn:hover{background:var(--primary-dark)}
+.question-paper-badge{color:#5c55e7!important;background:#eeedff;font-weight:700;padding:2px 7px;border-radius:5px;text-decoration:none;font-size:9px;display:inline-flex;align-items:center;gap:4px}
+.question-paper-badge:hover{background:#e2dfff}
+.assignment-instructions{background:#fafafc;border:1px solid #f0f0f5;border-radius:10px;padding:10px 12px;margin-bottom:14px}
+.assignment-instructions .instr-title{font-size:10px;font-weight:800;color:#636780;display:block;margin-bottom:4px}
+.assignment-instructions p{font-size:11px;color:#4b4f68;line-height:1.5;margin:0}
+

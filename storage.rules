@@ -5,10 +5,22 @@ service firebase.storage {
     function isFaculty() {
       return signedIn() && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == "faculty";
     }
+
+    // 1. Faculty Assignment Question Papers & Resource Files
+    match /assignments/{facultyUid}/{fileName} {
+      allow create, update: if signedIn()
+        && request.auth.uid == facultyUid
+        && request.resource.size <= 25 * 1024 * 1024
+        && request.resource.name.matches('.*\\.(pdf|doc|docx|zip|ppt|pptx)');
+      allow read: if signedIn();
+      allow delete: if signedIn() && request.auth.uid == facultyUid;
+    }
+
+    // 2. Student Assignment Submissions
     match /submissions/{studentUid}/{assignmentId}/{fileName} {
       allow create: if signedIn()
         && request.auth.uid == studentUid
-        && request.resource.size <= 10 * 1024 * 1024
+        && request.resource.size <= 15 * 1024 * 1024
         && request.resource.name.matches('.*\\.(pdf|doc|docx|zip)')
         && request.resource.contentType in [
           'application/pdf',

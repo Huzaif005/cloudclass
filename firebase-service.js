@@ -45,10 +45,40 @@ export function watchSubmissions(user, role, onData, onError) {
     onData(snap.docs.map(d => ({ id: d.id, ...d.data() })));
   }, onError);
 }
-export async function createCloudAssignment(data, user) {
+export async function createCloudAssignment(data, user, questionFile = null) {
+  let attachmentURL = null;
+  let attachmentName = null;
+  let attachmentPath = null;
+  let attachmentSize = null;
+
+  if (questionFile) {
+    const safeName = questionFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+    attachmentPath = `assignments/${user.uid}/${Date.now()}_${safeName}`;
+    const fileRef = ref(storage, attachmentPath);
+    await uploadBytes(fileRef, questionFile, {
+      contentType: questionFile.type || "application/octet-stream",
+      customMetadata: {
+        ownerUid: user.uid,
+        role: "faculty",
+        assignmentTitle: data.title || "Assignment Question File"
+      }
+    });
+    attachmentURL = await getDownloadURL(fileRef);
+    attachmentName = questionFile.name;
+    attachmentSize = questionFile.size;
+  }
+
   return addDoc(collection(db, "assignments"), {
-    ...data, createdBy: user.uid, createdByName: user.displayName || user.email,
-    createdAt: serverTimestamp(), allowedTypes: ["pdf", "doc", "docx", "zip"], maxFileSizeMB: 10
+    ...data,
+    attachmentURL,
+    attachmentName,
+    attachmentPath,
+    attachmentSize,
+    createdBy: user.uid,
+    createdByName: user.displayName || user.email,
+    createdAt: serverTimestamp(),
+    allowedTypes: ["pdf", "doc", "docx", "zip", "ppt", "pptx"],
+    maxFileSizeMB: 25
   });
 }
 export async function uploadCloudSubmission({ assignment, file, note, user }) {
